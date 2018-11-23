@@ -86,7 +86,9 @@ namespace ProjectVIBES
         private void btnAdd_Click(object sender, EventArgs e)
         {
             this.dataGridView1.Rows.Add();
+           
         }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
