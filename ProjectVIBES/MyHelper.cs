@@ -79,6 +79,38 @@ namespace ProjectVIBES
             return v;
         }
 
+        public void WriteNumbersOnly(GroupBox view)
+        {
+            foreach (Control item in view.Controls)
+            {
+               if(item is TextBox)
+                {
+                    Makeitnumber(item as TextBox);
+                }
+            }
+        }
 
+        private void Makeitnumber(TextBox text)
+        {
+            text.KeyPress += (sender, e) =>
+             {
+
+                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                 (e.KeyChar != '.'))
+                 {
+                     e.Handled = true;
+                 }
+
+              
+                 if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                 {
+                     e.Handled = true;
+                 }
+             };
+           
+
+        }
+
+        
     }
 }

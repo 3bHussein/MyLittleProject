@@ -20,6 +20,8 @@ namespace ProjectVIBES
         private void frmInvoice_Load(object sender, EventArgs e)
         {
             Select();
+            MyHelper myHelper = new MyHelper();
+            myHelper.WriteNumbersOnly(groupBox1);
 
         }
 
@@ -52,6 +54,9 @@ namespace ProjectVIBES
             dataGridView1.Columns.Add("Price", "Price");
             dataGridView1.Columns.Add("Total", "Total");
 
+          int  i =   entities.Invoices.Max(a => a.ID);
+            txtID.Text = (i + 1).ToString();
+
         }
 
         private void dataGridView1_RowLeave(object sender, DataGridViewCellEventArgs e)
@@ -80,7 +85,7 @@ namespace ProjectVIBES
         {
             MyHelper helper = new MyHelper();
           List<InvoiceDetail> details=   helper.ConvertToList(this.dataGridView1);
-            if(details.Count -1 <=0)
+            if(details.Count  <=0)
             {
                 MessageBox.Show("please add the detils of the invoice", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -93,11 +98,21 @@ namespace ProjectVIBES
             invoice.Note = txtnote.Text;
             invoice.InvoiceDetails = details;
             invoice.DateOfInvoice = dateTimePicker1.Value;
+            invoice.total = Convert.ToDecimal(txtDebit.Text);
+            invoice.TaxCusto = Convert.ToDecimal(txtcustomerTax.Text);
+            invoice.vatcustom = Convert.ToDecimal(txtvatcustomer.Text);
+            invoice.ISPaid = false;
+            invoice.ISCancel = false;
+            invoice.ISprinted = false;
+
             entities.Invoices.Add(invoice);
+            
           if(entities.SaveChanges() >0)
             { 
 
                 MessageBox.Show("The invoice has been added","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                int i = entities.Invoices.Max(a => a.ID);
+                txtID.Text = (i + 1).ToString();
             }
           else
             {

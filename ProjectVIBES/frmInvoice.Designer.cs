@@ -42,6 +42,8 @@
             this.txtnote = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtcustomerTax = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.txttotaldiscount = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDebit = new System.Windows.Forms.TextBox();
@@ -53,8 +55,6 @@
             this.btnsubmit = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -177,7 +177,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtcustomerTax);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txttotaldiscount);
             this.groupBox1.Controls.Add(this.label11);
@@ -193,12 +193,30 @@
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             // 
+            // txtcustomerTax
+            // 
+            this.txtcustomerTax.Location = new System.Drawing.Point(402, 60);
+            this.txtcustomerTax.Name = "txtcustomerTax";
+            this.txtcustomerTax.Size = new System.Drawing.Size(167, 22);
+            this.txtcustomerTax.TabIndex = 11;
+            this.txtcustomerTax.Text = "0";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(329, 60);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(73, 17);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Tax custo:";
+            // 
             // txttotaldiscount
             // 
             this.txttotaldiscount.Location = new System.Drawing.Point(402, 24);
             this.txttotaldiscount.Name = "txttotaldiscount";
             this.txttotaldiscount.Size = new System.Drawing.Size(167, 22);
             this.txttotaldiscount.TabIndex = 9;
+            this.txttotaldiscount.Text = "0";
             // 
             // label11
             // 
@@ -215,6 +233,7 @@
             this.txtDebit.Name = "txtDebit";
             this.txtDebit.Size = new System.Drawing.Size(167, 22);
             this.txtDebit.TabIndex = 5;
+            this.txtDebit.Text = "0";
             // 
             // label9
             // 
@@ -231,6 +250,7 @@
             this.txtvatcustomer.Name = "txtvatcustomer";
             this.txtvatcustomer.Size = new System.Drawing.Size(167, 22);
             this.txtvatcustomer.TabIndex = 3;
+            this.txtvatcustomer.Text = "0";
             // 
             // label8
             // 
@@ -247,6 +267,7 @@
             this.txttotal.Name = "txttotal";
             this.txttotal.Size = new System.Drawing.Size(167, 22);
             this.txttotal.TabIndex = 1;
+            this.txttotal.Text = "0";
             // 
             // label7
             // 
@@ -285,29 +306,13 @@
             this.button3.Text = "Old Invoice";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(402, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(167, 22);
-            this.textBox1.TabIndex = 11;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(329, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 17);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Tax custo:";
-            // 
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(811, 172);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(120, 42);
             this.btnAdd.TabIndex = 17;
-            this.btnAdd.Text = "addRow";
+            this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -317,7 +322,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 42);
             this.button1.TabIndex = 18;
-            this.button1.Text = "RemoveRow";
+            this.button1.Text = "-";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -383,7 +388,7 @@
         private System.Windows.Forms.Button btnsubmit;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtcustomerTax;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button button1;
