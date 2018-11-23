@@ -1,0 +1,748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VibesDataSourceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateOfInvoice" Type="datetime" />
+          <Property Name="ConferencesID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="total" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="vatcustom" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="ISPaid" Type="bit" />
+          <Property Name="TaxCusto" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="Discount" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="ISCancel" Type="bit" />
+          <Property Name="ISprinted" Type="bit" />
+          <Property Name="userID" Type="bit" />
+        </EntityType>
+        <EntityType Name="InvoiceDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="type" Type="nvarchar(max)" />
+          <Property Name="DoctorID" Type="int" />
+          <Property Name="HotelID" Type="int" />
+          <Property Name="price" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="Qtu" Type="int" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SourceName" Type="nvarchar(max)" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tb_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Tb_Conferences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Persident of Conferences" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="from" Type="datetime" Nullable="false" />
+          <Property Name="to" Type="datetime" Nullable="false" />
+          <Property Name="introdaction" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="close" Type="bit" Nullable="false" />
+          <Property Name="loginid" Type="int" Nullable="false" />
+          <Property Name="customerid" Type="int" Nullable="false" />
+          <Property Name="hotelid" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Tb_Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeofCustomer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Tb_expences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Tb_Hotels">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Address" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Tb_Login">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Logpassword" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="TypeOfUser" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_Revinues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Tb_suppliers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <Association Name="FK_Invoice_Tb_Conferences">
+          <End Role="Tb_Conferences" Type="Self.Tb_Conferences" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Conferences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ConferencesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Tb_suppliers">
+          <End Role="Tb_suppliers" Type="Self.Tb_suppliers" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_suppliers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceDetails_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+          <End Role="InvoiceDetails" Type="Self.InvoiceDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoiceDetails">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceDetails_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+          <End Role="InvoiceDetails" Type="Self.InvoiceDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoiceDetails">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceDetails_Tb_Hotels">
+          <End Role="Tb_Hotels" Type="Self.Tb_Hotels" Multiplicity="0..1" />
+          <End Role="InvoiceDetails" Type="Self.InvoiceDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Hotels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoiceDetails">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_Conferences_Tb_Customers1">
+          <End Role="Tb_Customers" Type="Self.Tb_Customers" Multiplicity="1" />
+          <End Role="Tb_Conferences" Type="Self.Tb_Conferences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tb_Conferences">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_Conferences_Tb_Hotels">
+          <End Role="Tb_Hotels" Type="Self.Tb_Hotels" Multiplicity="1" />
+          <End Role="Tb_Conferences" Type="Self.Tb_Conferences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Hotels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tb_Conferences">
+              <PropertyRef Name="hotelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VibesDataSourceModelStoreContainer">
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sources" EntityType="Self.Sources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Categories" EntityType="Self.Tb_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Conferences" EntityType="Self.Tb_Conferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Customers" EntityType="Self.Tb_Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_expences" EntityType="Self.Tb_expences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Hotels" EntityType="Self.Tb_Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Login" EntityType="Self.Tb_Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Revinues" EntityType="Self.Tb_Revinues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_suppliers" EntityType="Self.Tb_suppliers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Invoice_Tb_Conferences" Association="Self.FK_Invoice_Tb_Conferences">
+            <End Role="Tb_Conferences" EntitySet="Tb_Conferences" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Tb_suppliers" Association="Self.FK_Invoice_Tb_suppliers">
+            <End Role="Tb_suppliers" EntitySet="Tb_suppliers" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceDetails_Doctor" Association="Self.FK_InvoiceDetails_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="InvoiceDetails" EntitySet="InvoiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceDetails_Invoice" Association="Self.FK_InvoiceDetails_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoiceDetails" EntitySet="InvoiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceDetails_Tb_Hotels" Association="Self.FK_InvoiceDetails_Tb_Hotels">
+            <End Role="Tb_Hotels" EntitySet="Tb_Hotels" />
+            <End Role="InvoiceDetails" EntitySet="InvoiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_Conferences_Tb_Customers1" Association="Self.FK_Tb_Conferences_Tb_Customers1">
+            <End Role="Tb_Customers" EntitySet="Tb_Customers" />
+            <End Role="Tb_Conferences" EntitySet="Tb_Conferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_Conferences_Tb_Hotels" Association="Self.FK_Tb_Conferences_Tb_Hotels">
+            <End Role="Tb_Hotels" EntitySet="Tb_Hotels" />
+            <End Role="Tb_Conferences" EntitySet="Tb_Conferences" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VibesDataSourceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tb_Login">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Logpassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TypeOfUser" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="VibesDataSourceEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Tb_Login" EntityType="Self.Tb_Login" />
+          <FunctionImport Name="sp_login">
+            <Parameter Name="User" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="InOut" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="TypeOfUser" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Sources" EntityType="VibesDataSourceModel.Source" />
+          <EntitySet Name="sysdiagrams" EntityType="VibesDataSourceModel.sysdiagram" />
+          <EntitySet Name="Tb_Categories" EntityType="VibesDataSourceModel.Tb_Categories" />
+          <EntitySet Name="Tb_Conferences" EntityType="VibesDataSourceModel.Tb_Conferences" />
+          <EntitySet Name="Tb_Customers" EntityType="VibesDataSourceModel.Tb_Customers" />
+          <EntitySet Name="Tb_expences" EntityType="VibesDataSourceModel.Tb_expences" />
+          <EntitySet Name="Tb_Hotels" EntityType="VibesDataSourceModel.Tb_Hotels" />
+          <EntitySet Name="Tb_Revinues" EntityType="VibesDataSourceModel.Tb_Revinues" />
+          <EntitySet Name="Tb_suppliers" EntityType="VibesDataSourceModel.Tb_suppliers" />
+          <AssociationSet Name="FK_Tb_Conferences_Tb_Customers1" Association="VibesDataSourceModel.FK_Tb_Conferences_Tb_Customers1">
+            <End Role="Tb_Customers" EntitySet="Tb_Customers" />
+            <End Role="Tb_Conferences" EntitySet="Tb_Conferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_Conferences_Tb_Hotels" Association="VibesDataSourceModel.FK_Tb_Conferences_Tb_Hotels">
+            <End Role="Tb_Hotels" EntitySet="Tb_Hotels" />
+            <End Role="Tb_Conferences" EntitySet="Tb_Conferences" />
+          </AssociationSet>
+          <EntitySet Name="Doctors" EntityType="VibesDataSourceModel.Doctor" />
+          <EntitySet Name="Invoices" EntityType="VibesDataSourceModel.Invoice" />
+          <EntitySet Name="InvoiceDetails" EntityType="VibesDataSourceModel.InvoiceDetail" />
+          <AssociationSet Name="FK_InvoiceDetails_Doctor" Association="VibesDataSourceModel.FK_InvoiceDetails_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Tb_Conferences" Association="VibesDataSourceModel.FK_Invoice_Tb_Conferences">
+            <End Role="Tb_Conferences" EntitySet="Tb_Conferences" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Tb_suppliers" Association="VibesDataSourceModel.FK_Invoice_Tb_suppliers">
+            <End Role="Tb_suppliers" EntitySet="Tb_suppliers" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceDetails_Invoice" Association="VibesDataSourceModel.FK_InvoiceDetails_Invoice">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceDetails_Tb_Hotels" Association="VibesDataSourceModel.FK_InvoiceDetails_Tb_Hotels">
+            <End Role="Tb_Hotels" EntitySet="Tb_Hotels" />
+            <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SourceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tb_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tb_Conferences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Persident_of_Conferences" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="from" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="to" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="introdaction" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="close" Type="Boolean" Nullable="false" />
+          <Property Name="loginid" Type="Int32" Nullable="false" />
+          <Property Name="customerid" Type="Int32" Nullable="false" />
+          <Property Name="hotelid" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tb_Customers" Relationship="VibesDataSourceModel.FK_Tb_Conferences_Tb_Customers1" FromRole="Tb_Conferences" ToRole="Tb_Customers" />
+          <NavigationProperty Name="Tb_Hotels" Relationship="VibesDataSourceModel.FK_Tb_Conferences_Tb_Hotels" FromRole="Tb_Conferences" ToRole="Tb_Hotels" />
+          <NavigationProperty Name="Invoices" Relationship="VibesDataSourceModel.FK_Invoice_Tb_Conferences" FromRole="Tb_Conferences" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Tb_Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeofCustomer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tb_Conferences" Relationship="VibesDataSourceModel.FK_Tb_Conferences_Tb_Customers1" FromRole="Tb_Customers" ToRole="Tb_Conferences" />
+        </EntityType>
+        <EntityType Name="Tb_expences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tb_Hotels">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tb_Conferences" Relationship="VibesDataSourceModel.FK_Tb_Conferences_Tb_Hotels" FromRole="Tb_Hotels" ToRole="Tb_Conferences" />
+          <NavigationProperty Name="InvoiceDetails" Relationship="VibesDataSourceModel.FK_InvoiceDetails_Tb_Hotels" FromRole="Tb_Hotels" ToRole="InvoiceDetail" />
+        </EntityType>
+        <EntityType Name="Tb_Revinues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tb_suppliers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Invoices" Relationship="VibesDataSourceModel.FK_Invoice_Tb_suppliers" FromRole="Tb_suppliers" ToRole="Invoice" />
+        </EntityType>
+        <Association Name="FK_Tb_Conferences_Tb_Customers1">
+          <End Type="VibesDataSourceModel.Tb_Customers" Role="Tb_Customers" Multiplicity="1" />
+          <End Type="VibesDataSourceModel.Tb_Conferences" Role="Tb_Conferences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tb_Conferences">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_Conferences_Tb_Hotels">
+          <End Type="VibesDataSourceModel.Tb_Hotels" Role="Tb_Hotels" Multiplicity="1" />
+          <End Type="VibesDataSourceModel.Tb_Conferences" Role="Tb_Conferences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Hotels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tb_Conferences">
+              <PropertyRef Name="hotelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InvoiceDetails" Relationship="VibesDataSourceModel.FK_InvoiceDetails_Doctor" FromRole="Doctor" ToRole="InvoiceDetail" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateOfInvoice" Type="DateTime" Precision="3" />
+          <Property Name="ConferencesID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="total" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="vatcustom" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="ISPaid" Type="Boolean" />
+          <Property Name="TaxCusto" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="ISCancel" Type="Boolean" />
+          <Property Name="ISprinted" Type="Boolean" />
+          <Property Name="userID" Type="Boolean" />
+          <NavigationProperty Name="Tb_Conferences" Relationship="VibesDataSourceModel.FK_Invoice_Tb_Conferences" FromRole="Invoice" ToRole="Tb_Conferences" />
+          <NavigationProperty Name="Tb_suppliers" Relationship="VibesDataSourceModel.FK_Invoice_Tb_suppliers" FromRole="Invoice" ToRole="Tb_suppliers" />
+          <NavigationProperty Name="InvoiceDetails" Relationship="VibesDataSourceModel.FK_InvoiceDetails_Invoice" FromRole="Invoice" ToRole="InvoiceDetail" />
+        </EntityType>
+        <EntityType Name="InvoiceDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorID" Type="Int32" />
+          <Property Name="HotelID" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="9" Scale="2" />
+          <NavigationProperty Name="Doctor" Relationship="VibesDataSourceModel.FK_InvoiceDetails_Doctor" FromRole="InvoiceDetail" ToRole="Doctor" />
+          <NavigationProperty Name="Invoice" Relationship="VibesDataSourceModel.FK_InvoiceDetails_Invoice" FromRole="InvoiceDetail" ToRole="Invoice" />
+          <NavigationProperty Name="Tb_Hotels" Relationship="VibesDataSourceModel.FK_InvoiceDetails_Tb_Hotels" FromRole="InvoiceDetail" ToRole="Tb_Hotels" />
+          <Property Name="Qtu" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_InvoiceDetails_Doctor">
+          <End Type="VibesDataSourceModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+          <End Type="VibesDataSourceModel.InvoiceDetail" Role="InvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoiceDetail">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Tb_Conferences">
+          <End Type="VibesDataSourceModel.Tb_Conferences" Role="Tb_Conferences" Multiplicity="0..1" />
+          <End Type="VibesDataSourceModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Conferences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ConferencesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Tb_suppliers">
+          <End Type="VibesDataSourceModel.Tb_suppliers" Role="Tb_suppliers" Multiplicity="0..1" />
+          <End Type="VibesDataSourceModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_suppliers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceDetails_Invoice">
+          <End Type="VibesDataSourceModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+          <End Type="VibesDataSourceModel.InvoiceDetail" Role="InvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoiceDetail">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceDetails_Tb_Hotels">
+          <End Type="VibesDataSourceModel.Tb_Hotels" Role="Tb_Hotels" Multiplicity="0..1" />
+          <End Type="VibesDataSourceModel.InvoiceDetail" Role="InvoiceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Hotels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InvoiceDetail">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VibesDataSourceModelStoreContainer" CdmEntityContainer="VibesDataSourceEntities">
+          <EntitySetMapping Name="Tb_Login">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Tb_Login">
+              <MappingFragment StoreEntitySet="Tb_Login">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Logpassword" ColumnName="Logpassword" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="TypeOfUser" ColumnName="TypeOfUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Source">
+              <MappingFragment StoreEntitySet="Sources">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Categories">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Tb_Categories">
+              <MappingFragment StoreEntitySet="Tb_Categories">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Conferences">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Tb_Conferences">
+              <MappingFragment StoreEntitySet="Tb_Conferences">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="hotelid" ColumnName="hotelid" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="loginid" ColumnName="loginid" />
+                <ScalarProperty Name="close" ColumnName="close" />
+                <ScalarProperty Name="introdaction" ColumnName="introdaction" />
+                <ScalarProperty Name="to" ColumnName="to" />
+                <ScalarProperty Name="from" ColumnName="from" />
+                <ScalarProperty Name="Persident_of_Conferences" ColumnName="Persident of Conferences" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Customers">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Tb_Customers">
+              <MappingFragment StoreEntitySet="Tb_Customers">
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="TypeofCustomer" ColumnName="TypeofCustomer" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_expences">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Tb_expences">
+              <MappingFragment StoreEntitySet="Tb_expences">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Hotels">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Tb_Hotels">
+              <MappingFragment StoreEntitySet="Tb_Hotels">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Revinues">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Tb_Revinues">
+              <MappingFragment StoreEntitySet="Tb_Revinues">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_suppliers">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Tb_suppliers">
+              <MappingFragment StoreEntitySet="Tb_suppliers">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="ISprinted" ColumnName="ISprinted" />
+                <ScalarProperty Name="ISCancel" ColumnName="ISCancel" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TaxCusto" ColumnName="TaxCusto" />
+                <ScalarProperty Name="ISPaid" ColumnName="ISPaid" />
+                <ScalarProperty Name="vatcustom" ColumnName="vatcustom" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ConferencesID" ColumnName="ConferencesID" />
+                <ScalarProperty Name="DateOfInvoice" ColumnName="DateOfInvoice" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceDetails">
+            <EntityTypeMapping TypeName="VibesDataSourceModel.InvoiceDetail">
+              <MappingFragment StoreEntitySet="InvoiceDetails">
+                <ScalarProperty Name="Qtu" ColumnName="Qtu" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

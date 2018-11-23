@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c0d5c7c7fcca4ba897d807e349c7de8a" Name="Diagram1">
+        <EntityTypeShape EntityType="VibesDataSourceModel.Tb_Login" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Source" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Tb_Categories" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Tb_Conferences" Width="1.5" PointX="6" PointY="1" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Tb_Customers" Width="1.5" PointX="3.75" PointY="1.625" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Tb_expences" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Tb_Hotels" Width="1.5" PointX="3.75" PointY="5.625" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Tb_Revinues" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Tb_suppliers" Width="1.5" PointX="2.75" PointY="8.75" />
+        <AssociationConnector Association="VibesDataSourceModel.FK_Tb_Conferences_Tb_Customers1" />
+        <AssociationConnector Association="VibesDataSourceModel.FK_Tb_Conferences_Tb_Hotels" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Doctor" Width="1.5" PointX="10.25" PointY="9" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.Invoice" Width="1.5" PointX="10.25" PointY="3.875" />
+        <EntityTypeShape EntityType="VibesDataSourceModel.InvoiceDetail" Width="1.5" PointX="12.5" PointY="4.5" />
+        <AssociationConnector Association="VibesDataSourceModel.FK_InvoiceDetails_Doctor" />
+        <AssociationConnector Association="VibesDataSourceModel.FK_Invoice_Tb_Conferences" />
+        <AssociationConnector Association="VibesDataSourceModel.FK_Invoice_Tb_suppliers" />
+        <AssociationConnector Association="VibesDataSourceModel.FK_InvoiceDetails_Invoice" />
+        <AssociationConnector Association="VibesDataSourceModel.FK_InvoiceDetails_Tb_Hotels" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
