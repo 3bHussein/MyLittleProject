@@ -80,6 +80,29 @@ namespace ProjectVIBES
         {
             MyHelper helper = new MyHelper();
           List<InvoiceDetail> details=   helper.ConvertToList(this.dataGridView1);
+            if(details.Count -1 <=0)
+            {
+                MessageBox.Show("please add the detils of the invoice", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Invoice invoice = new Invoice();
+            invoice.ConferencesID = Convert.ToInt32(comboConference.SelectedValue);
+            invoice.CustomerID = Convert.ToInt32(comboCustomer.SelectedValue);
+            invoice.Name = txtname.Text;
+            invoice.Note = txtnote.Text;
+            invoice.InvoiceDetails = details;
+            invoice.DateOfInvoice = dateTimePicker1.Value;
+            entities.Invoices.Add(invoice);
+          if(entities.SaveChanges() >0)
+            {
+
+                MessageBox.Show("The invoice has been added","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+          else
+            {
+                MessageBox.Show("Test");
+            }
 
         }
 
