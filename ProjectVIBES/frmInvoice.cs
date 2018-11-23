@@ -95,7 +95,7 @@ namespace ProjectVIBES
             invoice.DateOfInvoice = dateTimePicker1.Value;
             entities.Invoices.Add(invoice);
           if(entities.SaveChanges() >0)
-            {
+            { 
 
                 MessageBox.Show("The invoice has been added","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
